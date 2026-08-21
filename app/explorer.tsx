@@ -11,11 +11,19 @@ export type Benefit = {
   group: string;
 };
 
-type Props = { benefits: Benefit[] };
+export type LawMetadata = {
+  name: string;
+  legal: string;
+  information: string;
+};
+
+export type Metadata = { laws: Record<string, LawMetadata> };
+
+type Props = { benefits: Benefit[]; metadata: Metadata };
 
 const audienceOrder = ['Jedes Alter', 'Kinder', 'Jugendliche', 'Erwerbsalter', 'Senior/-innen'];
 
-export default function Explorer({ benefits }: Props) {
+export default function Explorer({ benefits, metadata }: Props) {
   const [query, setQuery] = useState('');
   const [law, setLaw] = useState('Alle Gesetze');
   const [audience, setAudience] = useState('Alle Zielgruppen');
@@ -95,7 +103,7 @@ export default function Explorer({ benefits }: Props) {
                   <span className="legal">{item.rechtsnorm}</span>
                   <span className="chevron" aria-hidden="true">{isOpen ? '−' : '+'}</span>
                 </button>
-                {isOpen && <div className="detail"><div><span className="detail-label">Zielgruppen</span><div className="tags">{item.zielgruppen.map((tag) => <span key={tag}>{tag}</span>)}</div></div><div><span className="detail-label">Themenfelder</span><div className="tags accent">{item.themenfelder.map((tag) => <span key={tag}>{tag}</span>)}</div></div></div>}
+                {isOpen && <div className="detail"><div><span className="detail-label">Zielgruppen</span><div className="tags">{item.zielgruppen.map((tag) => <span key={tag}>{tag}</span>)}</div></div><div><span className="detail-label">Themenfelder</span><div className="tags accent">{item.themenfelder.map((tag) => <span key={tag}>{tag}</span>)}</div></div><div className="sources"><span className="detail-label">Weitere Informationen</span><strong>{metadata.laws[item.law]?.name ?? item.law}</strong><div><a href={metadata.laws[item.law]?.information} target="_blank" rel="noreferrer">Informationen der zuständigen Stelle ↗</a><a href={metadata.laws[item.law]?.legal} target="_blank" rel="noreferrer">Gesetzestext bei Gesetze im Internet ↗</a></div></div></div>}
               </article>
             );
           })}

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import * as yaml from 'js-yaml';
-import Explorer, { type Benefit } from './explorer';
+import Explorer, { type Benefit, type Metadata } from './explorer';
 
 type Source = Record<string, Record<string, Benefit[]>>;
 
@@ -16,6 +16,11 @@ function loadBenefits(): Benefit[] {
   );
 }
 
+function loadMetadata(): Metadata {
+  const metadataPath = path.join(process.cwd(), 'sozialleistungen-metadata.yml');
+  return yaml.load(fs.readFileSync(metadataPath, 'utf8')) as Metadata;
+}
+
 export default function Home() {
-  return <Explorer benefits={loadBenefits()} />;
+  return <Explorer benefits={loadBenefits()} metadata={loadMetadata()} />;
 }
