@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ThaiJamesLee/sozialleistungs-explorer/blob/main/.github/actions/validate-sozialleistungen/sozialleistungen.schema.json",
+  "title": "Sozialleistungen",
+  "description": "Schema for the sozialleistungen YAML catalogue.",
+  "type": "object",
+  "minProperties": 1,
+  "additionalProperties": false,
+  "patternProperties": {
+    "^.+$": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "patternProperties": {
+        "^.+$": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/leistung"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "leistung": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "leistung",
+        "rechtsnorm",
+        "zielgruppen",
+        "themenfelder"
+      ],
+      "properties": {
+        "leistung": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rechtsnorm": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zielgruppen": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "themenfelder": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

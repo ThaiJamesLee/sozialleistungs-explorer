@@ -1,0 +1,28 @@
+name: Validate Sozialleistungen YAML
+description: Validate sozialleistungen.yml against its JSON schema
+inputs:
+  file:
+    description: Path to the YAML file to validate
+    required: false
+    default: sozialleistungen/sozialleistungen.yml
+runs:
+  using: composite
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
+    - name: Install dependencies
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: npm install
+
+    - name: Validate YAML
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      env:
+        INPUT_FILE: ${{ inputs.file }}
+      run: node index.js
+branding:
+  icon: check-circle
+  color: green

@@ -1,0 +1,45 @@
+name: Update Sozialleistungen submodule
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-sozialleistungen
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+          submodules: true
+
+      - name: Update sozialleistungen submodule
+        shell: bash
+        run: git submodule update --remote --merge sozialleistungen
+
+      - name: Validate updated YAML
+        uses: ./.github/actions/validate-sozialleistungen
+
+      - name: Commit and push changes
+        shell: bash
+        run: |
+          if git diff --quiet -- sozialleistungen; then
+            echo "No submodule update available."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sozialleistungen
+          git commit -m "chore: update sozialleistungen submodule"
+          git push origin HEAD:main

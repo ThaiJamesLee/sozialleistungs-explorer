@@ -1,0 +1,3 @@
+[submodule "sozialleistungen"]
+	path = sozialleistungen
+	url = https://github.com/ifo-institute/sozialleistungen.git
