@@ -15,14 +15,14 @@ runs:
     - name: Install dependencies
       shell: bash
       working-directory: ${{ github.action_path }}
-      run: npm install
+      run: npm ci
 
     - name: Validate YAML
       shell: bash
-      working-directory: ${{ github.action_path }}
+      working-directory: ${{ github.workspace }}
       env:
         INPUT_FILE: ${{ inputs.file }}
-      run: node index.js
+      run: node "${{ github.action_path }}/index.js"
 branding:
   icon: check-circle
   color: green
