@@ -39,6 +39,10 @@ laws:
     name: Soziale Entschädigung
     legal: https://www.gesetze-im-internet.de/sgb_14/
     information: https://www.bmas.de/DE/Soziales/Soziale-Entschaedigung/soziale-entschaedigung.html
+  AFBG:
+    name: Aufstiegsfortbildungsförderungsgesetz
+    legal: https://www.gesetze-im-internet.de/afbg/
+    information: https://www.aufstiegs-bafoeg.de/
   AsylbLG:
     name: Asylbewerberleistungsgesetz
     legal: https://www.gesetze-im-internet.de/asylblg/
@@ -47,6 +51,14 @@ laws:
     name: Ausbildungsförderung
     legal: https://www.gesetze-im-internet.de/bafoeg/
     information: https://www.bafög.de/
+  BeamtVG:
+    name: Beamtenversorgungsgesetz
+    legal: https://www.gesetze-im-internet.de/beamtvg/
+    information: https://www.bmi.bund.de/DE/themen/oeffentlicher-dienst/beamte/beamte-node.html
+  BEEG:
+    name: Bundeselterngeld- und Elternzeitgesetz
+    legal: https://www.gesetze-im-internet.de/beeg/
+    information: https://familienportal.de/familienportal/familienleistungen/elterngeld
   BKGG:
     name: Bundeskindergeldgesetz
     legal: https://www.gesetze-im-internet.de/bkgg_1996/
@@ -55,6 +67,18 @@ laws:
     name: Einkommensteuergesetz
     legal: https://www.gesetze-im-internet.de/estg/
     information: https://familienportal.de/familienportal/familienleistungen/steuerentlastungen
+  FPfZG:
+    name: Familienpflegezeitgesetz
+    legal: https://www.gesetze-im-internet.de/fpfzg/
+    information: https://www.bmfsfj.de/bmfsfj/themen/familie/familienpflegezeit
+  MuSchG:
+    name: Mutterschutzgesetz
+    legal: https://www.gesetze-im-internet.de/muschg_2018/
+    information: https://familienportal.de/familienportal/familienleistungen/mutterschutz
+  UhVorschG:
+    name: Unterhaltsvorschussgesetz
+    legal: https://www.gesetze-im-internet.de/uhvorschg/
+    information: https://familienportal.de/familienportal/familienleistungen/unterhaltsvorschuss
   WoGG:
     name: Wohngeldgesetz
     legal: https://www.gesetze-im-internet.de/wogg/

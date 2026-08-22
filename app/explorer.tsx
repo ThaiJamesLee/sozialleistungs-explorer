@@ -29,6 +29,7 @@ export default function Explorer({ benefits, metadata }: Props) {
   const [audience, setAudience] = useState('Alle Zielgruppen');
   const [topic, setTopic] = useState('Alle Themenfelder');
   const [expanded, setExpanded] = useState<number | null>(null);
+  const [showGlossary, setShowGlossary] = useState(false);
 
   const laws = useMemo(() => [...new Set(benefits.map((item) => item.law))].sort(), [benefits]);
   const audiences = useMemo(() => {
@@ -90,6 +91,17 @@ export default function Explorer({ benefits, metadata }: Props) {
           {(query || law !== 'Alle Gesetze' || audience !== 'Alle Zielgruppen' || topic !== 'Alle Themenfelder') && (
             <button className="clear" onClick={clearFilters}>Filter zurücksetzen</button>
           )}
+          <button className="glossary-toggle" type="button" aria-expanded={showGlossary} aria-controls="law-glossary" onClick={() => setShowGlossary(!showGlossary)}>
+            {showGlossary ? 'Gesetzesnamen ausblenden' : 'Gesetzesnamen anzeigen'}
+          </button>
+          {showGlossary && <div className="law-glossary" id="law-glossary" aria-label="Gesetze im Überblick">
+            <span className="detail-label">Gesetze im Überblick</span>
+            <div className="law-glossary-list">
+              {laws.map((lawCode) => (
+                <span key={lawCode}><strong>{lawCode}</strong><span>{metadata.laws[lawCode]?.name ?? 'Vollständiger Name nicht verfügbar'}</span></span>
+              ))}
+            </div>
+          </div>}
         </div>
 
         <div className="list-header"><span>Leistung</span><span>Rechtsgrundlage</span></div>
@@ -116,5 +128,5 @@ export default function Explorer({ benefits, metadata }: Props) {
 }
 
 function Filter({ label, value, options, onChange }: { label: string; value: string; options: string[]; onChange: (value: string) => void }) {
-  return <label className="filter"><span>{label}</span><select value={value} onChange={(event) => onChange(event.target.value)}><option>{label === 'Gesetz' ? 'Alle Gesetze' : label === 'Für wen?' ? 'Alle Zielgruppen' : 'Alle Themenfelder'}</option>{options.map((option) => <option key={option}>{option}</option>)}</select></label>;
+  return <label className="filter"><span>{label}</span><select value={value} onChange={(event) => onChange(event.target.value)}><option>{label === 'Gesetz' ? 'Alle Gesetze' : label === 'Für wen?' ? 'Alle Zielgruppen' : 'Alle Themenfelder'}</option>{options.map((option) => <option key={option} value={option}>{option}</option>)}</select></label>;
 }
