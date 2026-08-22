@@ -122,7 +122,7 @@ export default function Explorer({ benefits, metadata }: Props) {
         </div>
         {filtered.length === 0 && <div className="empty"><strong>Keine Treffer.</strong><span>Versuche einen anderen Suchbegriff oder setze die Filter zurück.</span><button onClick={clearFilters}>Alle Leistungen anzeigen</button></div>}
       </section>
-      <footer><span>Eine Inventur im Haus der sozialen Hilfe</span><span>Quelle: ifo Institut · YAML-Datenbestand</span></footer>
+      <footer><span>Quelle: ifo Institut · YAML-Datenbestand</span></footer>
     </main>
   );
 }
